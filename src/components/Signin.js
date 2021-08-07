@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -7,6 +7,7 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+// import { SettingsInputAntenna } from "@material-ui/icons";
 
 function Copyright() {
   return (
@@ -45,7 +46,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn({setName}) {
+  const [disabled, setDisabled] = useState(true)
   const classes = useStyles();
+  const [string, setString] = useState("")
+  console.log(string)
+
+  // useEffect(() => {if(string!==""){setDisabled(false)}},[string])
+  useEffect(()=>{
+    const disabled = string === "";
+    setDisabled(disabled)
+  },[string])
 
   return (
     <Container component="main" maxWidth="xs">
@@ -64,6 +74,7 @@ export default function SignIn({setName}) {
             label="ニックネーム"
             name="name"
             autoFocus
+            onChange={(e)=>setString(e.target.value)}
           />
           <Button
             type="submit"
@@ -73,7 +84,7 @@ export default function SignIn({setName}) {
             className={classes.submit}
             disabled="true"
             onClick={setName}
-            
+            disabled={disabled}
           >
             はじめる
           </Button>
