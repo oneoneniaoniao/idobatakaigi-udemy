@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn({setName}) {
   const classes = useStyles();
 
   return (
@@ -71,6 +71,8 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled="true"
+            onClick={setName}
             
           >
             はじめる
