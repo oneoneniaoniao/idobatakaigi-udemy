@@ -46,10 +46,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn({setName}) {
-  const [disabled, setDisabled] = useState(true)
   const classes = useStyles();
+  const [disabled, setDisabled] = useState(true)
   const [string, setString] = useState("")
-  console.log(string)
 
   // useEffect(() => {if(string!==""){setDisabled(false)}},[string])
   useEffect(()=>{
@@ -75,6 +74,14 @@ export default function SignIn({setName}) {
             name="name"
             autoFocus
             onChange={(e)=>setString(e.target.value)}
+            onKeyDown={((e)=>{
+              if (e.key=== "Enter"){
+              setName(e.target.value)
+              e.preventDefault();
+              // e.target.value = ""
+              // setString("")
+              }
+            })}
           />
           <Button
             type="button"
@@ -82,8 +89,8 @@ export default function SignIn({setName}) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={()=>setName(string)}
             disabled={disabled}
+            onClick={()=>setName(string)}
           >
             はじめる
           </Button>
