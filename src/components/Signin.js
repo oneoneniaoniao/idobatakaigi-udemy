@@ -77,13 +77,12 @@ export default function SignIn({setName}) {
             onChange={(e)=>setString(e.target.value)}
           />
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            disabled="true"
-            onClick={setName}
+            onClick={()=>setName(string)}
             disabled={disabled}
           >
             はじめる
