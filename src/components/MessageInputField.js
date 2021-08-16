@@ -4,6 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { gravatarPath } from "../gravatar";
 import { MessageField } from "./MessageField";
+import { MessageSubmitButton} from "./MessageSubmitButton"
+
 const useStyles = makeStyles({
   root: {
     gridRow: 2,
@@ -25,7 +27,7 @@ export const MessageInputField = ({ name }) => {
           <MessageField name={name} text={text} setText={setText}/>
         </Grid>
         <Grid item xs={1}>
-          Button
+          <MessageSubmitButton name={name} text={text} setText={setText}/>
         </Grid>
       </Grid>
     </div>

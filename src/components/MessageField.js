@@ -16,7 +16,7 @@ export const MessageField = ({ name, text, setText }) => {
         const text = e.target.value;
         if (text==="")return;
         if (e.key === "Enter") {
-          pushMessage({name:"ham", text});
+          pushMessage({name:"maru", text});
           setText("")
           e.preventDefault();
         }
