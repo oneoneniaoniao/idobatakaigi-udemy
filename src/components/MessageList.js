@@ -1,19 +1,32 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
+import { messagesRef } from "../firebase";
+
 const useStyles = makeStyles({
-  root:{
+  root: {
     gridRow: 1,
-  }
-})
+  },
+});
 
 export const MessageList = () => {
-  const classes = useStyles()
-  return (
-    <div classes={classes.root}>
-      MessageList 
-    </div>
-  )
-}
+  const [messages, setMessages] = useState([]);
+  const classes = useStyles();
 
-
+  useEffect(() => {
+    messagesRef
+      .orderByKey()
+      .limitToLast(3)
+      .on("value", (snapshot) => {
+        const messages = snapshot.val();
+        if (messages === null) return;
+        const entries = Object.entries(messages);
+        const newMessages = entries.map((entry) => {
+          const [key, nameAndText] = entry;
+          return { key, ...nameAndText };
+        });
+        setMessages(newMessages);
+      });
+  }, []);
+  return <div classes={classes.root}>MessageList</div>;
+};
