@@ -9,6 +9,6 @@ export default () => {
   if (name === "" && config.signInEnable) {
     return <SignIn setName={setName} />;
   } else {
-    return <Main name={name} />;
+    return <Main name={name} setName={setName}/>;
   }
 };

@@ -8,7 +8,7 @@ import { MessageSubmitButton } from "./MessageSubmitButton";
 
 const useStyles = makeStyles({
   root: {
-    gridRow: 2,
+    gridRow: 3,
     margin: "26px",
   },
 });
